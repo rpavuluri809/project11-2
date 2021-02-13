@@ -21,55 +21,14 @@
   even in small screens. -->
 <div class="mdl-layout mdl-js-layout mdl-layout--fixed-drawer
             mdl-layout--fixed-header">
-            
-  <header class="mdl-layout__header">
-    <div class="mdl-layout__header-row">
-     <h1 class="mdl-layout-title"><span>CRM</span> Admin</h1>
- 
-
-     
-      <div class="mdl-layout-spacer"></div>
-      
-      <div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable
-                  mdl-textfield--floating-label mdl-textfield--align-right">
-                  
-        <label id="tt2" class="material-icons mdl-badge mdl-badge--overlap" data-badge="5">account_box</label>  
-        <div class="mdl-tooltip" for="tt2">Messages</div>                     
-
-        <label id="tt3" class="material-icons mdl-badge mdl-badge--overlap" data-badge="4">notifications</label> 
-         <div class="mdl-tooltip" for="tt3">Notifications</div>           
-                  
-        <label class="mdl-button mdl-js-button mdl-button--icon"
-               for="fixed-header-drawer-exp">
-          <i class="material-icons">search</i>
-        </label>
-        <div class="mdl-textfield__expandable-holder">
-          <input class="mdl-textfield__input" type="text" name="sample"
-                 id="fixed-header-drawer-exp">
-        </div>
-        
-      </div>
-    </div>
-  </header>
+    
+    <?php 
+      include "header.inc.php";
   
-  <div class="mdl-layout__drawer mdl-color--blue-grey-800 mdl-color-text--blue-grey-50">
-       <div class="profile">
-           <img src="images/profile.jpg" class="avatar">
-           <h4>John Locke</h4>           
-           <span>johnlocke@example.com</span>
-       </div>
-
-    <nav class="mdl-navigation mdl-color-text--blue-grey-300">
-        <a class="mdl-navigation__link mdl-color-text--blue-grey-300" href=""><i class="material-icons" role="presentation">dashboard</i> Dashboard</a>
-        <a class="mdl-navigation__link mdl-color-text--blue-grey-300" href=""><i class="material-icons" role="presentation">message</i> Messages</a>
-        <a class="mdl-navigation__link mdl-color-text--blue-grey-300" href=""><i class="material-icons" role="presentation">event</i> Tasks</a>
-        <a class="mdl-navigation__link mdl-color-text--blue-grey-300" href=""><i class="material-icons" role="presentation">call</i> Orders</a>
-        <a class="mdl-navigation__link mdl-color-text--blue-grey-300" href=""><i class="material-icons" role="presentation">settings</i> Configure</a>
-        <a class="mdl-navigation__link mdl-color-text--blue-grey-300" href=""><i class="material-icons" role="presentation">view_list</i> Catalog</a>
-        <a class="mdl-navigation__link mdl-color-text--blue-grey-300" href=""><i class="material-icons" role="presentation">contacts</i> Customers</a>
-        <a class="mdl-navigation__link mdl-color-text--blue-grey-300" href=""><i class="material-icons" role="presentation">insert_chart</i> Analytics</a>                              
-    </nav>
-  </div>
+      include "left.inc.php";
+    ?>
+            
+  
   
   
   
@@ -89,11 +48,17 @@
             </div>
             <div class="mdl-card__supporting-text">            
                 <ul class="mdl-list">
-                    <li ><a href="#">Order #500</a></li>
+
+                  <?php 
+                    for($i = 500; $i <= 540; $i = $i + 10){
+                      echo '<li><a href="#">Order #'.$i. '</a></li>';
+                    }
+                  ?>
+                    <!-- <li ><a href="#">Order #500</a></li>
                     <li><a href="#">Order #510</a></li>
                     <li><a href="#">Order #520</a></li>
                     <li><a href="#">Order #530</a></li>
-                    <li><a href="#">Order #540</a></li>                 
+                    <li><a href="#">Order #540</a></li>                  -->
                 </ul>   
             </div>    
           </div>  <!-- / mdl-cell + mdl-card -->

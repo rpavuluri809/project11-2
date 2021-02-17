@@ -26,6 +26,8 @@
       include "header.inc.php";
   
       include "left.inc.php";
+
+      include "data.inc.php";
     ?>
             
   
@@ -63,76 +65,82 @@
             </div>    
           </div>  <!-- / mdl-cell + mdl-card -->
 
+          <?php
 
+                    $amount1 = $quantity1 * $price1;
+                    $amount2 = $quantity2 * $price2;
+                    $amount3 = $quantity3 * $price3;
+                    $amount4 = $quantity4 * $price4;
+                
+                    //$subtotal = number_format(($amount1 + $amount2 + $amount3 + $amount4),2);
+                    $subtotal = $amount1 + $amount2 + $amount3 + $amount4;
+                    //echo "$subtotal";
+                    $shipping = 200;
 
+                    if($subtotal > 10000){
+                      $shipping = 100;
+                    }
+
+                    $grandTotal = $subtotal + $shipping;
+                    //echo "$subtotal + $shipping = $grandTotal";
+                    
+
+                    echo '<div class="mdl-cell mdl-cell--9-col card-lesson mdl-card  mdl-shadow--2dp">';
+                    echo '<div class="mdl-card__title mdl-color--orange">';
+                    echo '<h2 class="mdl-card__title-text">Selected Order: #520</h2>';
+                    echo '</div>';
+                    echo '<div class="mdl-card__supporting-text">';
+                        echo '<table class="mdl-data-table  mdl-shadow--2dp">';
+                         echo '<caption>Customer: <strong>Mount Royal University</strong></caption>';
+                          echo '<thead>';
+                            echo '<tr>';
+                              echo '<th>Cover</th>';
+                              echo '<th class="mdl-data-table__cell--non-numeric">Title</th>';
+                              echo '<th>Quantity</th>';
+                              echo '<th>Price</th>';
+                              echo '<th>Amount</th>';
+                            echo '</tr>';
+                          echo '</thead>';
+                          echo '<tfoot>';
+                              echo '<tr class="totals">';
+                                  echo '<td colspan="4">Subtotal</td>';
+                                  echo '<td>'.number_format(($subtotal),2).'</td>';
+                              echo '</tr>';
+                              echo '<tr class="totals">';
+                                  echo '<td colspan="4">Shipping</td>';
+                                  echo '<td>'.number_format(($shipping),2).'</td>';
+                              echo '</tr>';
+                              echo '<tr class="grandtotals">';
+                                  echo '<td colspan="4">Grand Total</td>';
+                                  echo '<td>'.number_format(($grandTotal),2).'</td>';
+                              echo '</tr>';
+                          echo '</tfoot>';
+                          echo '<tbody>';
+
+                          outputOrderRow($file1, $title1, $quantity1, $price1);
+                          outputOrderRow($file2, $title2, $quantity2, $price2);
+                          outputOrderRow($file3, $title3, $quantity3, $price3);
+                          outputOrderRow($file4, $title4, $quantity4, $price4);
+                           
+                          echo '</tbody>';
+        
+                        echo '</table>';
+                    echo '</div>';
+        
+                  echo '</div>';
+                    ?> 
 
           <!-- mdl-cell + mdl-card -->
-          <div class="mdl-cell mdl-cell--9-col card-lesson mdl-card  mdl-shadow--2dp">
-            <div class="mdl-card__title mdl-color--orange">
-              <h2 class="mdl-card__title-text">Selected Order: #520</h2>
-            </div>
-            <div class="mdl-card__supporting-text">
-                <table class="mdl-data-table  mdl-shadow--2dp">
-                 <caption>Customer: <strong>Mount Royal University</strong></caption>
-                  <thead>
-                    <tr>
-                      <th>Cover</th>
-                      <th class="mdl-data-table__cell--non-numeric">Title</th>
-                      <th>Quantity</th>
-                      <th>Price</th>
-                      <th>Amount</th>
-                    </tr>
-                  </thead>
-                  <tfoot>
-                      <tr class="totals">
-                          <td colspan="4">Subtotal</td>
-                          <td>$11650.00</td>
-                      </tr>
-                      <tr class="totals">
-                          <td colspan="4">Shipping</td>
-                          <td>$100.00</td>
-                      </tr> 
-                      <tr class="grandtotals">
-                          <td colspan="4">Grand Total</td>
-                          <td>$12650.00</td>
-                      </tr>                            
-                  </tfoot>          
-                  <tbody>
-                    <tr>
-                     <td><img src="images/books/tinysquare/0205886159.jpg"></td>
-                      <td class="mdl-data-table__cell--non-numeric">Global Issues, Local Arguments</td>
-                      <td>25</td>
-                      <td>$10.00</td>
-                      <td>$250.00</td>
-                    </tr>
-                    <tr>
-                     <td><img src="images/books/tinysquare/0205875548.jpg"></td>
-                      <td class="mdl-data-table__cell--non-numeric">The Prentice Hall Guide for College Writers</td>
-                      <td>50</td>
-                      <td>$50.00</td>
-                      <td>$2500.00</td>
-                    </tr>
-                    <tr>
-                     <td><img src="images/books/tinysquare/0321826035.jpg"></td>
-                      <td class="mdl-data-table__cell--non-numeric">Introductory and Intermediate Algebra 5e</td>
-                      <td>40</td>
-                      <td>$35.00</td>
-                      <td>$1400.00</td>
-                    </tr>
-                    <tr>
-                     <td><img src="images/books/tinysquare/0205902278.jpg"></td>
-                      <td class="mdl-data-table__cell--non-numeric">Literature and the Writing Process</td>
-                      <td>300</td>
-                      <td>$20.00</td>
-                      <td>$7500.00</td>
-                    </tr>            
-                  </tbody>
+            <!-- / mdl-cell + mdl-card -->
+          <?php
+          //$subtotal = 0;
+          function outputOrderRow($file, $title, $quantity, $price){
+            $amount = number_format(($quantity * $price),2);
+            echo '<tr><td><img src="images/books/tinysquare/'.$file.'"></td><td>'.$title.'</td><td>'.$quantity.'</td><td>'.$price.'</td><td>'.$amount.'</td>';
 
-                </table>
-            </div>
-
-          </div>  <!-- / mdl-cell + mdl-card -->
-
+            //$subtotal = number_format(($subtotal + $amount),2);
+          }
+          ?>
 
 
 
